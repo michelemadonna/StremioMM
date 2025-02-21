@@ -7,7 +7,7 @@ services:
     environment:
       - API_PASSWORD=${API_PASSWORD}
       - 'TRANSPORT_ROUTES={"all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}}'
-
+    restart: unless-stopped
   mammamia:
     build: ./mammamia
     container_name: mammamia
@@ -15,7 +15,7 @@ services:
       - TMDB_KEY=${TMDB_KEY}
       - PROXY=${PROXY}
       - FORWARDPROXY=${FORWARDPROXY}
-    
+    restart: unless-stopped
 networks:
   default:
     external: true
