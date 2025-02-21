@@ -16,6 +16,15 @@ services:
       - PROXY=${PROXY}
       - FORWARDPROXY=${FORWARDPROXY}
     restart: unless-stopped
+  stremio-docker:
+    image: nginx:latest
+    container_name: stremio-docker
+    ports:
+      -p 8080:8080
+      -p 11470:11470
+    environment:
+      - NO_CORS=1
+
 networks:
   default:
     external: true
