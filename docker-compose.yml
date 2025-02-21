@@ -5,16 +5,16 @@ services:
     build: ./media_proxy
     container_name: mediaflow_proxy
     environment:
-      - API_PASSWORD=your_mfp_password
+      - API_PASSWORD=${API_PASSWORD}
       - 'TRANSPORT_ROUTES={"all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}}'
 
   mammamia:
     build: ./mammamia
     container_name: mammamia
     environment:
-      - TMDB_KEY=set_your_tmdbkey
-      - 'PROXY=["the proxy"]'
-      - 'FORWARDPROXY=the forward proxy/'
+      - TMDB_KEY=${TMDB_KEY}
+      - PROXY=${PROXY}
+      - FORWARDPROXY=${FORWARDPROXY}
     
 networks:
   default:
