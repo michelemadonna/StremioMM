@@ -8,7 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y git
 
 # Clone the repository
-RUN git clone https://github.com/UrloMythus/MammaMia .
+RUN git clone --branch main https://github.com/UrloMythus/MammaMia .
 
 # Add Refreshed sites config by annamosene (thanks!!!)
 ADD https://raw.githubusercontent.com/annamosene/MammaMiaMFP/refs/heads/main/config.json config.json
