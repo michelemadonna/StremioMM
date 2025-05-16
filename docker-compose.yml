@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mediaflow_proxy:
-    build: https://github.com/mhdzumair/mediaflow-proxy.git#main
+    build: ./media_proxy
     container_name: mediaflow_proxy
     environment:
       - API_PASSWORD=${API_PASSWORD}
