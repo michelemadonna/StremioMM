@@ -9,9 +9,9 @@ RUN apt-get update && apt-get install -y git
 
 # Clone the repository
 RUN git clone --branch main https://github.com/UrloMythus/MammaMia .
-# RUN git clone --branch main https://github.com/annamosene/MammaMiaMFP .
-# Add Refreshed sites config by annamosene (thanks!!!)
-# ADD https://raw.githubusercontent.com/annamosene/MammaMiaMFP/refs/heads/main/config.json config.json
+
+# Add Refreshed sites config by https://pastebin.com/raw/VrC4D65J (thanks!!!)
+ADD https://raw.githubusercontent.com/michelemadonna/StremioMM/refs/heads/main/mammamia/config.json config.json
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
