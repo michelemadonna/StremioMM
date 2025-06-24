@@ -16,16 +16,16 @@ services:
       - PROXY=${PROXY}
       - FORWARDPROXY=${FORWARDPROXY}
     restart: unless-stopped 
-  stremio-docker:
-    image: tsaridas/stremio-docker:latest
-    container_name: stremio-docker
-    ports:
-      - "8080:8080"
-      - "11470:11470"
-    environment:
-      - NO_CORS=1
-      - CASTING_DISABLED=1
-    restart: unless-stopped
+  #stremio-docker:
+  #  image: tsaridas/stremio-docker:latest
+  #  container_name: stremio-docker
+  #  ports:
+  #    - "8080:8080"
+  #    - "11470:11470"
+  #  environment:
+  #    - NO_CORS=1
+  #    - CASTING_DISABLED=1
+  #  restart: unless-stopped
   streamv:
     build: https://github.com/qwertyuiop8899/StreamV.git#main
     container_name: streamv
@@ -35,7 +35,7 @@ services:
       - MFP_PSW=${API_PASSWORD}
       - BOTHLINK=false
     restart: unless-stopped 
-
+    command: pnpm start
 networks:
   default:
     external: true
