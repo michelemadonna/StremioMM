@@ -8,10 +8,10 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y git
 
 # Clone the repository
-#RUN git clone --branch main https://github.com/UrloMythus/MammaMia .
-RUN git clone --branch main https://github.com/annamosene/MammaMiaMFP .
+RUN git clone --branch main https://github.com/UrloMythus/MammaMia .
+# RUN git clone --branch main https://github.com/annamosene/MammaMiaMFP .
 # Add Refreshed sites config by annamosene (thanks!!!)
-#ADD https://raw.githubusercontent.com/annamosene/MammaMiaMFP/refs/heads/main/config.json config.json
+# ADD https://raw.githubusercontent.com/annamosene/MammaMiaMFP/refs/heads/main/config.json config.json
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
