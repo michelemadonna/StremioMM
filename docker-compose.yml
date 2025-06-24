@@ -30,10 +30,10 @@ services:
     build: https://github.com/qwertyuiop8899/StreamV.git#main
     container_name: streamv
     environment:
-      - TMDB_API_KEY=${TMDB_KEY}
+      - TMDB_API_KEY=${TMDB_API_KEY}
       - MFP_URL=${MFP_URL}
-      - MFP_PSW=${API_PASSWORD}
-      - BOTHLINK=false
+      - MFP_PSW=${MFP_PSW}
+      - BOTHLINK=${MFP_PSW}
     restart: unless-stopped 
     command: pnpm start
 networks:
