@@ -26,6 +26,15 @@ services:
       - NO_CORS=1
       - CASTING_DISABLED=1
     restart: unless-stopped
+  streamv:
+    build: https://github.com/qwertyuiop8899/StreamV.git#main
+    container_name: streamv
+    environment:
+      - TMDB_API_KEY=${TMDB_KEY}
+      - MFP_URL=${MFP_URL}
+      - MFP_PSW=${API_PASSWORD}
+      - BOTHLINK=false
+    restart: unless-stopped 
 
 networks:
   default:
