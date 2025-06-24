@@ -36,6 +36,11 @@ services:
       - BOTHLINK=${BOTHLINK}
     restart: unless-stopped 
     command: pnpm start
+  
+  webstreamr:
+    build: https://github.com/webstreamr/webstreamr.git#main
+    container_name: streamv
+    restart: unless-stopped
 networks:
   default:
     external: true
