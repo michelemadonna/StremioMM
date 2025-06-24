@@ -33,7 +33,7 @@ services:
       - TMDB_API_KEY=${TMDB_API_KEY}
       - MFP_URL=${MFP_URL}
       - MFP_PSW=${MFP_PSW}
-      - BOTHLINK=${MFP_PSW}
+      - BOTHLINK=${BOTHLINK}
     restart: unless-stopped 
     command: pnpm start
 networks:
