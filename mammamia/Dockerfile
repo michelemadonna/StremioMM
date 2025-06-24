@@ -12,7 +12,7 @@ RUN git clone --branch main https://github.com/UrloMythus/MammaMia .
 
 # Add Refreshed sites config by https://pastebin.com/raw/VrC4D65J (thanks!!!)
 ADD https://raw.githubusercontent.com/michelemadonna/StremioMM/refs/heads/main/mammamia/config.json config.json
-
+ADD https://raw.githubusercontent.com/michelemadonna/StremioMM/refs/heads/main/mammamia/update_domains.py update_domains.py
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
