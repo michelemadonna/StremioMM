@@ -14,10 +14,37 @@ steps:
       username:
         from_secret: OCI_REGISTRY_USER
       password:
-        from_secret: OCI_REGISTRY_PASSWORD    
+        from_secret: OCI_REGISTRY_PASSWORD
+  build-mfp:
+    image: woodpeckerci/plugin-docker-buildx:6.0.1
+    settings:
+      dockerfile: ./media_proxy/Dockerfile
+      context: ./media_proxy
+      repo: registry.oci.w3studio.it/media_proxy
+      tags: latest
+      registry: registry.oci.w3studio.it
+      username:
+        from_secret: OCI_REGISTRY_USER
+      password:
+        from_secret: OCI_REGISTRY_PASSWORD
+  build-streamv:
+    image: woodpeckerci/plugin-docker-buildx:6.0.1
+    settings:
+      context: "https://github.com/qwertyuiop8899/StreamV.git#main"
+      dockerfile: Dockerfile
+      repo: registry.oci.w3studio.it/streamv
+      tags: latest
+      registry: registry.oci.w3studio.it
+      username:
+        from_secret: OCI_REGISTRY_USER
+      password:
+        from_secret: OCI_REGISTRY_PASSWORD
+  
   update-stack:
     image: docker
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker service update --force --image registry.oci.w3studio.it/mammamia:latest test_mammamia
+      - docker service update --force --image registry.oci.w3studio.it/mammamia:latest streamio_mammamia
+      - docker service update --force --image registry.oci.w3studio.it/media_proxy:latest streamio_media_proxy
+      - docker service update --force --image registry.oci.w3studio.it/mammamia:latest streamio_streamv
