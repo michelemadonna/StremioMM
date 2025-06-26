@@ -1,19 +1,65 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  webstreamr:
-    build: https://github.com/webstreamr/webstreamr.git#main
-    container_name: webstreamr
-    networks:
-      - traefik-net
+  mediaflow_proxy:
+    build: registry.oci.w3studio.it/media_proxy:latest
+    environment:
+      - API_PASSWORD=${API_PASSWORD}
+      - 'TRANSPORT_ROUTES={"all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}}'
     deploy:
-      replicas: 2
+      replicas: 1
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.webstreamr.rule=Host(`webstreamr.oci.w3studio.it`)"
-        - "traefik.http.routers.webstreamr.entrypoints=websecure"
-        - "traefik.http.routers.webstreamr.tls.certresolver=ovh"
-        - "traefik.http.services.webstreamr.loadbalancer.server.port=51546"
+        - "traefik.http.routers.media_proxy.rule=Host(`media_proxy.oci.w3studio.it`)"
+        - "traefik.http.routers.media_proxy.entrypoints=websecure"
+        - "traefik.http.routers.media_proxy.tls.certresolver=ovh"
+        - "traefik.http.services.media_proxy.loadbalancer.server.port=8888"
+    networks:
+      - traefik-net
+  mammamia:
+    build: registry.oci.w3studio.it/mammamia:latest
+    environment:
+      - TMDB_KEY=${TMDB_KEY}
+      - PROXY=${PROXY}
+      - FORWARDPROXY=${FORWARDPROXY}
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.mammamia.rule=Host(`mammamia.oci.w3studio.it`)"
+        - "traefik.http.routers.mammamia.entrypoints=websecure"
+        - "traefik.http.routers.mammamia.tls.certresolver=ovh"
+        - "traefik.http.services.mammamia.loadbalancer.server.port=8080"
+    networks:
+      - traefik-net
+  #stremio-docker:
+  #  image: tsaridas/stremio-docker:latest
+  #  container_name: stremio-docker
+  #  ports:
+  #    - "8080:8080"
+  #    - "11470:11470"
+  #  environment:
+  #    - NO_CORS=1
+  #    - CASTING_DISABLED=1
+  #  restart: unless-stopped
+  streamv:
+    build: registry.oci.w3studio.it/streamv:latest
+    environment:
+      - TMDB_API_KEY=${TMDB_API_KEY}
+      - MFP_URL=${MFP_URL}
+      - MFP_PSW=${MFP_PSW}
+      - BOTHLINK=${BOTHLINK}
+    command: pnpm start
+    deploy:
+          replicas: 1
+          labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.streamv.rule=Host(`streamv.oci.w3studio.it`)"
+            - "traefik.http.routers.streamv.entrypoints=websecure"
+            - "traefik.http.routers.streamv.tls.certresolver=ovh"
+            - "traefik.http.services.streamv.loadbalancer.server.port=51546"
+
+
 
 networks:
   traefik-net:
