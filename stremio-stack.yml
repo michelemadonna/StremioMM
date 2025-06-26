@@ -51,13 +51,13 @@ services:
       - BOTHLINK=${BOTHLINK}
     command: pnpm start
     deploy:
-          replicas: 1
-          labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.streamv.rule=Host(`streamv.oci.w3studio.it`)"
-            - "traefik.http.routers.streamv.entrypoints=websecure"
-            - "traefik.http.routers.streamv.tls.certresolver=ovh"
-            - "traefik.http.services.streamv.loadbalancer.server.port=7860"
+      replicas: 1
+        labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.streamv.rule=Host(`streamv.oci.w3studio.it`)"
+          - "traefik.http.routers.streamv.entrypoints=websecure"
+          - "traefik.http.routers.streamv.tls.certresolver=ovh"
+          - "traefik.http.services.streamv.loadbalancer.server.port=7860"
 
 
 
