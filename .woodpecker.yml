@@ -14,12 +14,12 @@ steps:
 
   - name: push
     image: docker:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    secrets:
-      - OCI_REGISTRY_USER
-      - OCI_REGISTRY_PASSWORD
     commands:
       - echo "$OCI_REGISTRY_PASSWORD" | docker login -u "$OCI_REGISTRY_USER" --password-stdin registry.oci.w3studio.it
       - docker push registry.oci.w3studio.it/mammamia:latest
       - docker push registry.oci.w3studio.it/mfp:latest
+    environment:
+      OCI_REGISTRY_PASSWORD:
+        from_secret: OCI_REGISTRY_PASSWORD
+      OCI_REGISTRY_USER:
+        from_secret: OCI_REGISTRY_USER
