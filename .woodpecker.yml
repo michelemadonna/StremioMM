@@ -4,20 +4,14 @@ when:
     branch: main
 
 steps:
-  - name: build
-    image: docker:latest
-    commands:
-      - docker build -t registry.oci.w3studio.it/mammamia:latest ./mammamia
-      - docker build -t registry.oci.w3studio.it/mfp:latest ./mfp
+  - name: build-and-push:
+    image: woodpeckerci/plugin-docker
+    settings:
+      dockerfile: ./mammamia/Dockerfile
+      context: ./mammamia
+      repo: registry.oci.w3studio.it/mammamia
+      tags: latest
+      registry: registry.oci.w3studio.it
+      username: from_secret:REGISTRY_USER
+      password: from_secret:REGISTRY_PASS
 
-  - name: push
-    image: docker:latest
-    commands:
-      - echo "$OCI_REGISTRY_PASSWORD" | docker login -u "$OCI_REGISTRY_USER" --password-stdin registry.oci.w3studio.it
-      - docker push registry.oci.w3studio.it/mammamia:latest
-      - docker push registry.oci.w3studio.it/mfp:latest
-    environment:
-      OCI_REGISTRY_PASSWORD:
-        from_secret: OCI_REGISTRY_PASSWORD
-      OCI_REGISTRY_USER:
-        from_secret: OCI_REGISTRY_USER
