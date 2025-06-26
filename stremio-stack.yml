@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mediaflow_proxy:
-    build: registry.oci.w3studio.it/media_proxy:latest
+    image: registry.oci.w3studio.it/media_proxy:latest
     environment:
       - API_PASSWORD=${API_PASSWORD}
       - 'TRANSPORT_ROUTES={"all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}}'
@@ -17,7 +17,7 @@ services:
     networks:
       - traefik-net
   mammamia:
-    build: registry.oci.w3studio.it/mammamia:latest
+    image: registry.oci.w3studio.it/mammamia:latest
     environment:
       - TMDB_KEY=${TMDB_KEY}
       - PROXY=${PROXY}
@@ -43,7 +43,7 @@ services:
   #    - CASTING_DISABLED=1
   #  restart: unless-stopped
   streamv:
-    build: registry.oci.w3studio.it/streamv:latest
+    image: registry.oci.w3studio.it/streamv:latest
     environment:
       - TMDB_API_KEY=${TMDB_API_KEY}
       - MFP_URL=${MFP_URL}
