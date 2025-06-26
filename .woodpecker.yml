@@ -14,8 +14,7 @@ steps:
       username:
         from_secret: OCI_REGISTRY_USER
       password:
-        from_secret: OCI_REGISTRY_PASSWORD
-        
+        from_secret: OCI_REGISTRY_PASSWORD    
   push-update-mammamia:
     image: docker
     volumes:
