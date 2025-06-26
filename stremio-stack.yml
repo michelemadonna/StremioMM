@@ -57,7 +57,7 @@ services:
             - "traefik.http.routers.streamv.rule=Host(`streamv.oci.w3studio.it`)"
             - "traefik.http.routers.streamv.entrypoints=websecure"
             - "traefik.http.routers.streamv.tls.certresolver=ovh"
-            - "traefik.http.services.streamv.loadbalancer.server.port=51546"
+            - "traefik.http.services.streamv.loadbalancer.server.port=7860"
 
 
 
