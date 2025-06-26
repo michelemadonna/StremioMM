@@ -20,7 +20,7 @@ steps:
     settings:
       dockerfile: ./media_proxy/Dockerfile
       context: ./media_proxy
-      repo: registry.oci.w3studio.it/media_proxy
+      repo: registry.oci.w3studio.it/mediaflow_proxy
       tags: latest
       registry: registry.oci.w3studio.it
       username:
@@ -46,5 +46,5 @@ steps:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
       - docker service update --force --image registry.oci.w3studio.it/mammamia:latest streamio_mammamia
-      - docker service update --force --image registry.oci.w3studio.it/media_proxy:latest streamio_media_proxy
-      - docker service update --force --image registry.oci.w3studio.it/mammamia:latest streamio_streamv
+      - docker service update --force --image registry.oci.w3studio.it/mediaflow_proxy:latest stremio_mediaflow_proxy
+      - docker service update --force --image registry.oci.w3studio.it/streamv:latest streamio_streamv
