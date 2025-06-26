@@ -18,8 +18,8 @@ steps:
       - /var/run/docker.sock:/var/run/docker.sock
     secrets:
       - OCI_REGISTRY_USER
-      - OCI_REGISTRY_PASS
+      - OCI_REGISTRY_PASSWORD
     commands:
-      - echo "$REGISTRY_PASS" | docker login -u "$OCI_REGISTRY_USER" --password-stdin registry.oci.w3studio.it
+      - echo "$OCI_REGISTRY_PASSWORD" | docker login -u "$OCI_REGISTRY_USER" --password-stdin registry.oci.w3studio.it
       - docker push registry.oci.w3studio.it/mammamia:latest
       - docker push registry.oci.w3studio.it/mfp:latest
