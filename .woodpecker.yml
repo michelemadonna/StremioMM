@@ -1,6 +1,7 @@
 when:
   - event: push
     branch: main
+    
 steps:
   build-mammamia:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
@@ -20,4 +21,4 @@ steps:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker service update --image registry.oci.w3studio.it/myapp:latest myapp
+      - docker service update --image registry.oci.w3studio.it/mammamia:latest mammamia
