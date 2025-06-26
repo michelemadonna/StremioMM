@@ -15,9 +15,9 @@ steps:
         from_secret: OCI_REGISTRY_USER
       password:
         from_secret: OCI_REGISTRY_PASSWORD    
-  push-update-mammamia:
+  update-stack:
     image: docker
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker service update --image registry.oci.w3studio.it/mammamia:latest mammamia
+      - docker service update --force --image registry.oci.w3studio.it/mammamia:latest test_mammamia
