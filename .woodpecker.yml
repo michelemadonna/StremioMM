@@ -4,7 +4,7 @@ when:
     branch: main
 
 steps:
-  - name: build-and-push:
+  build-mammamia:
     image: woodpeckerci/plugin-docker
     settings:
       dockerfile: ./mammamia/Dockerfile
@@ -12,6 +12,17 @@ steps:
       repo: registry.oci.w3studio.it/mammamia
       tags: latest
       registry: registry.oci.w3studio.it
-      username: from_secret:REGISTRY_USER
-      password: from_secret:REGISTRY_PASS
+      username: from_secret:OCI_REGISTRY_USER
+      password: from_secret:OCI_REGISTRY_PASSWORD
+
+  build-mfp:
+    image: woodpeckerci/plugin-docker
+    settings:
+      dockerfile: ./mfp/Dockerfile
+      context: ./mfp
+      repo: registry.oci.w3studio.it/mfp
+      tags: latest
+      registry: registry.oci.w3studio.it
+      username: from_secret:OCI_REGISTRY_USER
+      password: from_secret:OCI_REGISTRY_PASSWORD
 
