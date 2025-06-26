@@ -1,0 +1,10 @@
+pipeline:
+  build:
+    image: docker:latest
+    commands:
+      - docker build -t registry.oci.w3studio.it/mammamia:latest ./mammamia
+      - docker build -t registry.oci.w3studio.it/mfp:latest ./mfp
+      - echo "$REGISTRY_PASS" | docker login -u "$REGISTRY_USER" --password-stdin registry.oci.w3studio.it
+      - docker push registry.oci.w3studio.it/mammamia:latest
+      - docker push registry.oci.w3studio.it/mfp:latest
+
