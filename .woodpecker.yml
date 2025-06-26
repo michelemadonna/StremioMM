@@ -18,9 +18,9 @@ steps:
   build-mfp:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
     settings:
-      dockerfile: ./mfp/Dockerfile
-      context: ./mfp
-      repo: registry.oci.w3studio.it/mfp
+      dockerfile: ./media_proxy/Dockerfile
+      context: ./media_proxy
+      repo: registry.oci.w3studio.it/media_proxy
       tags: latest
       registry: registry.oci.w3studio.it
       username:
