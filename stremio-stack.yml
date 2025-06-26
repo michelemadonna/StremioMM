@@ -50,6 +50,8 @@ services:
       - MFP_PSW=${MFP_PSW}
       - BOTHLINK=${BOTHLINK}
     command: pnpm start
+    networks:
+      - traefik-net
     deploy:
       replicas: 1
       labels:
