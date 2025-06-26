@@ -11,8 +11,10 @@ steps:
       repo: registry.oci.w3studio.it/mammamia
       tags: latest
       registry: registry.oci.w3studio.it
-      username: from_secret:OCI_REGISTRY_USER
-      password: from_secret:OCI_REGISTRY_PASSWORD
+      username:
+        from_secret: OCI_REGISTRY_USER
+      password:
+        from_secret: OCI_REGISTRY_PASSWORD
 
   build-mfp:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
@@ -22,6 +24,8 @@ steps:
       repo: registry.oci.w3studio.it/mfp
       tags: latest
       registry: registry.oci.w3studio.it
-      username: from_secret:OCI_REGISTRY_USER
-      password: from_secret:OCI_REGISTRY_PASSWORD
+      username:
+        from_secret: OCI_REGISTRY_USER
+      password:
+        from_secret: OCI_REGISTRY_PASSWORD
 
