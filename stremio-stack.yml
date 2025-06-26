@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mediaflow_proxy:
-    image: registry.oci.w3studio.it/media_proxy:latest
+    image: registry.oci.w3studio.it/media_flow_proxy:latest
     environment:
       - API_PASSWORD=${API_PASSWORD}
       - 'TRANSPORT_ROUTES={"all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}}'
@@ -10,7 +10,7 @@ services:
       replicas: 1
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.media_proxy.rule=Host(`media_proxy.oci.w3studio.it`)"
+        - "traefik.http.routers.media_proxy.rule=Host(`mfp.oci.w3studio.it`)"
         - "traefik.http.routers.media_proxy.entrypoints=websecure"
         - "traefik.http.routers.media_proxy.tls.certresolver=ovh"
         - "traefik.http.services.media_proxy.loadbalancer.server.port=8888"
