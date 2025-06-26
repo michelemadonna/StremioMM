@@ -5,7 +5,7 @@ when:
 
 steps:
   build-mammamia:
-    image: woodpeckerci/plugin-docker
+    image: woodpeckerci/plugin-docker-buildx
     settings:
       dockerfile: ./mammamia/Dockerfile
       context: ./mammamia
@@ -16,7 +16,7 @@ steps:
       password: from_secret:OCI_REGISTRY_PASSWORD
 
   build-mfp:
-    image: woodpeckerci/plugin-docker
+    image: woodpeckerci/plugin-docker-buildx
     settings:
       dockerfile: ./mfp/Dockerfile
       context: ./mfp
