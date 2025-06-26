@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  webstreamr:
+    build: https://github.com/webstreamr/webstreamr.git#main
+    container_name: webstreamr
+    networks:
+      - traefik-net
+    deploy:
+      replicas: 2
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.webstreamr.rule=Host(`webstreamr.oci.w3studio.it`)"
+        - "traefik.http.routers.webstreamr.entrypoints=websecure"
+        - "traefik.http.routers.webstreamr.tls.certresolver=ovh"
+        - "traefik.http.services.webstreamr.loadbalancer.server.port=51546"
+
+networks:
+  traefik-net:
+    external: true
