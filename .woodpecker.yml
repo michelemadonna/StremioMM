@@ -21,8 +21,10 @@ steps:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - OCI_REGISTRY_USER
-      - OCI_REGISTRY_PASSWORD
+      OCI_REGISTRY_USER:
+        from_secret: OCI_REGISTRY_USER
+      OCI_REGISTRY_PASSWORD:
+        from_secret: OCI_REGISTRY_PASSWORD
     commands:
       - echo "PASSWORD....................................."
       - echo "$OCI_REGISTRY_PASSWORD"
