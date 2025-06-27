@@ -2,11 +2,11 @@ version: '3.8'
 
 services:
   mediaflow_proxy:
-    build: https://github.com/nzo66/mediaflow-proxy#main
+    build: https://github.com/mhdzumair/mediaflow-proxy.git
     container_name: mediaflow_proxy
     environment:
       - API_PASSWORD=${API_PASSWORD}
-      - 'TRANSPORT_ROUTES={"all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}}'
+      - 'TRANSPORT_ROUTES={"all://*.newkso.ru": {"proxy": true, "verify_ssl": false}, "all://newkso.ru": {"proxy": true, "verify_ssl": false}, "all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}, all://*.vavoo.to": {"proxy": true, "verify_ssl": false}, "all://vavoo.to": {"proxy": true, "verify_ssl": false}}'
     restart: unless-stopped
   mammamia:
     build: ./mammamia
