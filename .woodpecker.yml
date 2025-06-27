@@ -40,4 +40,11 @@ steps:
       password:
         from_secret: OCI_REGISTRY_PASSWORD
   
-
+  update-stack:
+    image: docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - docker service update --force --image registry.oci.w3studio.it/mammamia:latest -with-registry-auth stremio_mammamia
+      - docker service update --force --image registry.oci.w3studio.it/media_flow_proxy:latest stremio_mediaflow_proxy
+      - docker service update --force --image registry.oci.w3studio.it/streamv:latest stremio_streamv
