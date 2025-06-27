@@ -32,16 +32,6 @@ services:
         - "traefik.http.services.mammamia.loadbalancer.server.port=8080"
     networks:
       - traefik-net
-  #stremio-docker:
-  #  image: tsaridas/stremio-docker:latest
-  #  container_name: stremio-docker
-  #  ports:
-  #    - "8080:8080"
-  #    - "11470:11470"
-  #  environment:
-  #    - NO_CORS=1
-  #    - CASTING_DISABLED=1
-  #  restart: unless-stopped
   streamv:
     image: registry.oci.w3studio.it/streamv:latest
     environment:
@@ -60,18 +50,18 @@ services:
         - "traefik.http.routers.streamv.entrypoints=websecure"
         - "traefik.http.routers.streamv.tls.certresolver=ovh"
         - "traefik.http.services.streamv.loadbalancer.server.port=7860"
-  webstreamr:
-    image: registry.oci.w3studio.it/webstreamr:latest
-    networks:
-      - traefik-net
-    deploy:
-      replicas: 1
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.webstreamr.rule=Host(`webstreamr.oci.w3studio.it`)"
-        - "traefik.http.routers.webstreamr.entrypoints=websecure"
-        - "traefik.http.routers.webstreamr.tls.certresolver=ovh"
-        - "traefik.http.services.webstreamr.loadbalancer.server.port=51546"
+  #webstreamr:
+  #  image: registry.oci.w3studio.it/webstreamr:latest
+  #  networks:
+  #    - traefik-net
+  #  deploy:
+  #    replicas: 1
+  #    labels:
+  #      - "traefik.enable=true"
+  #      - "traefik.http.routers.webstreamr.rule=Host(`webstreamr.oci.w3studio.it`)"
+  #      - "traefik.http.routers.webstreamr.entrypoints=websecure"
+  #      - "traefik.http.routers.webstreamr.tls.certresolver=ovh"
+  #      - "traefik.http.services.webstreamr.loadbalancer.server.port=51546"
   
 
 

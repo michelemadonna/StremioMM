@@ -41,19 +41,19 @@ steps:
         from_secret: OCI_REGISTRY_USER
       password:
         from_secret: OCI_REGISTRY_PASSWORD
-  build-webstreamr:
-    image: woodpeckerci/plugin-docker-buildx:6.0.1
-    settings:
-      context: "https://github.com/webstreamr/webstreamr.git#main"
-      dockerfile: Dockerfile
-      repo: registry.oci.w3studio.it/webstreamr
-      tags: latest, ${CI_COMMIT_SHA}
-      push: true
-      registry: registry.oci.w3studio.it
-      username:
-        from_secret: OCI_REGISTRY_USER
-      password:
-        from_secret: OCI_REGISTRY_PASSWORD
+  #build-webstreamr:
+  #  image: woodpeckerci/plugin-docker-buildx:6.0.1
+  #  settings:
+  #    context: "https://github.com/webstreamr/webstreamr.git#main"
+  #    dockerfile: Dockerfile
+  #    repo: registry.oci.w3studio.it/webstreamr
+  #    tags: latest, ${CI_COMMIT_SHA}
+  #    push: true
+  #    registry: registry.oci.w3studio.it
+  #    username:
+  #      from_secret: OCI_REGISTRY_USER
+  #    password:
+  #      from_secret: OCI_REGISTRY_PASSWORD
   
   update-stack:
     image: docker
@@ -69,7 +69,7 @@ steps:
       - docker service update --image registry.oci.w3studio.it/mammamia:${CI_COMMIT_SHA} --with-registry-auth stremio_mammamia
       - docker service update --image registry.oci.w3studio.it/media_flow_proxy:${CI_COMMIT_SHA} --with-registry-auth stremio_mediaflow_proxy
       - docker service update --image registry.oci.w3studio.it/streamv:${CI_COMMIT_SHA} --with-registry-auth stremio_streamv
-      - docker service update --image registry.oci.w3studio.it/webstreamr:${CI_COMMIT_SHA} --with-registry-auth stremio_webstreamr
+    #  - docker service update --image registry.oci.w3studio.it/webstreamr:${CI_COMMIT_SHA} --with-registry-auth stremio_webstreamr
       
       
 
