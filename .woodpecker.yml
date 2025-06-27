@@ -18,8 +18,8 @@ steps:
   build-mfp:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
     settings:
-      dockerfile: ./media_proxy/Dockerfile
-      context: ./media_proxy
+      dockerfile: Dockerfile
+      context: https://github.com/nzo66/mediaflow-proxy#main
       repo: registry.oci.w3studio.it/media_flow_proxy
       tags: latest, ${CI_COMMIT_SHA}
       push: true
