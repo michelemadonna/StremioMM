@@ -3,7 +3,7 @@ when:
     branch: main
 steps:
 
-build-streamv:
+  build-streamv:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
     settings:
       dockerfile: ./streamv/Dockerfile
