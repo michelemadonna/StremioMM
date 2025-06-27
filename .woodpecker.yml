@@ -20,9 +20,16 @@ steps:
     image: docker
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - OCI_REGISTRY_USER
+      - OCI_REGISTRY_PASSWORD
     commands:
+      - echo "PASSWORD....................................."
+      - echo "$OCI_REGISTRY_PASSWORD"
       - sleep 10
+      - echo "$OCI_REGISTRY_PASSWORD" | docker login registry.oci.w3studio.it -u "$OCI_REGISTRY_USER" --password-stdin
       - docker pull registry.oci.w3studio.it/streamv:${CI_COMMIT_SHA}
+    
   update-stack:
     image: docker
     volumes:
