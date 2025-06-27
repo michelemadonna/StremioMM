@@ -2,30 +2,6 @@ when:
   - event: push
     branch: main
 steps:
-  build-mammamia:
-    image: woodpeckerci/plugin-docker-buildx:6.0.1
-    settings:
-      dockerfile: ./mammamia/Dockerfile
-      context: ./mammamia
-      repo: registry.oci.w3studio.it/mammamia
-      tags: latest
-      registry: registry.oci.w3studio.it
-      username:
-        from_secret: OCI_REGISTRY_USER
-      password:
-        from_secret: OCI_REGISTRY_PASSWORD
-  build-mfp:
-    image: woodpeckerci/plugin-docker-buildx:6.0.1
-    settings:
-      dockerfile: ./media_proxy/Dockerfile
-      context: ./media_proxy
-      repo: registry.oci.w3studio.it/media_flow_proxy
-      tags: latest
-      registry: registry.oci.w3studio.it
-      username:
-        from_secret: OCI_REGISTRY_USER
-      password:
-        from_secret: OCI_REGISTRY_PASSWORD
   build-streamv:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
     settings:
@@ -44,6 +20,4 @@ steps:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker service update --force --image registry.oci.w3studio.it/mammamia:latest --with-registry-auth stremio_mammamia
-      - docker service update --force --image registry.oci.w3studio.it/media_flow_proxy:latest --with-registry-auth stremio_mediaflow_proxy
       - docker service update --force --image registry.oci.w3studio.it/streamv:latest --with-registry-auth stremio_streamv
