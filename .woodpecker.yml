@@ -19,7 +19,7 @@ steps:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
     settings:
       dockerfile: Dockerfile
-      context: https://github.com/nzo66/mediaflow-proxy#main
+      context: https://github.com/mhdzumair/mediaflow-proxy.git
       repo: registry.oci.w3studio.it/media_flow_proxy
       tags: latest, ${CI_COMMIT_SHA}
       push: true
