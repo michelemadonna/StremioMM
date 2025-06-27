@@ -11,6 +11,7 @@ steps:
       repo: registry.oci.w3studio.it/streamv
       tags: latest
       registry: registry.oci.w3studio.it
+      push: true
       username:
         from_secret: OCI_REGISTRY_USER
       password:
