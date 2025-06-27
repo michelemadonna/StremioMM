@@ -2,16 +2,16 @@ when:
   - event: push
     branch: main
 steps:
-  
-  build-streamv:
+
+build-streamv:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
     settings:
       dockerfile: ./streamv/Dockerfile
       context: ./streamv
       repo: registry.oci.w3studio.it/streamv
-      tags: latest
-      registry: registry.oci.w3studio.it
+      tags: latest, ${CI_COMMIT_SHA}
       push: true
+      registry: registry.oci.w3studio.it
       username:
         from_secret: OCI_REGISTRY_USER
       password:
@@ -22,4 +22,4 @@ steps:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker service update --force --image registry.oci.w3studio.it/streamv:latest --with-registry-auth stremio_streamv
+      - docker service update --image registry.oci.w3studio.it/streamv:${CI_COMMIT_SHA}  --with-registry-auth stremio_streamv
