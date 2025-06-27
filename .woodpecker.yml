@@ -25,10 +25,6 @@ steps:
       OCI_REGISTRY_PASSWORD:
         from_secret: OCI_REGISTRY_PASSWORD
     commands:
-      - echo "PASSWORD....................................."
-      - echo "$OCI_REGISTRY_PASSWORD"
-      - sleep 10
       - echo "$OCI_REGISTRY_PASSWORD" | docker login registry.oci.w3studio.it -u "$OCI_REGISTRY_USER" --password-stdin
-      - docker pull registry.oci.w3studio.it/streamv:${CI_COMMIT_SHA}
       - docker service update --image registry.oci.w3studio.it/streamv:${CI_COMMIT_SHA} --with-registry-auth stremio_streamv
 
