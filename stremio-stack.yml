@@ -60,7 +60,19 @@ services:
         - "traefik.http.routers.streamv.entrypoints=websecure"
         - "traefik.http.routers.streamv.tls.certresolver=ovh"
         - "traefik.http.services.streamv.loadbalancer.server.port=7860"
-
+  webstreamr:
+    image: registry.oci.w3studio.it/webstreamr:latest
+    networks:
+      - traefik-net
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.webstreamr.rule=Host(`webstreamr.oci.w3studio.it`)"
+        - "traefik.http.routers.webstreamr.entrypoints=websecure"
+        - "traefik.http.routers.webstreamr.tls.certresolver=ovh"
+        - "traefik.http.services.webstreamr.loadbalancer.server.port=51546"
+  
 
 
 networks:
