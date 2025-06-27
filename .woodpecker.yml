@@ -2,6 +2,45 @@ when:
   - event: push
     branch: main
 steps:
+  build-mammamia:
+    image: woodpeckerci/plugin-docker-buildx:6.0.1
+    settings:
+      dockerfile: ./mammamia/Dockerfile
+      context: ./mammamia
+      repo: registry.oci.w3studio.it/mammamia
+      tags: latest, ${CI_COMMIT_SHA}
+      push: true
+      registry: registry.oci.w3studio.it
+      username:
+        from_secret: OCI_REGISTRY_USER
+      password:
+        from_secret: OCI_REGISTRY_PASSWORD
+  build-mfp:
+    image: woodpeckerci/plugin-docker-buildx:6.0.1
+    settings:
+      dockerfile: ./media_proxy/Dockerfile
+      context: ./media_proxy
+      repo: registry.oci.w3studio.it/media_flow_proxy
+      tags: latest, ${CI_COMMIT_SHA}
+      push: true
+      registry: registry.oci.w3studio.it
+      username:
+        from_secret: OCI_REGISTRY_USER
+      password:
+        from_secret: OCI_REGISTRY_PASSWORD
+  build-streamv:
+    image: woodpeckerci/plugin-docker-buildx:6.0.1
+    settings:
+      context: "https://github.com/qwertyuiop8899/StreamV.git#main"
+      dockerfile: Dockerfile
+      repo: registry.oci.w3studio.it/streamv
+      tags: latest, ${CI_COMMIT_SHA}
+      push: true
+      registry: registry.oci.w3studio.it
+      username:
+        from_secret: OCI_REGISTRY_USER
+      password:
+        from_secret: OCI_REGISTRY_PASSWORD
   build-webstreamr:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
     settings:
@@ -16,7 +55,21 @@ steps:
       password:
         from_secret: OCI_REGISTRY_PASSWORD
   
-
+  update-stack:
+    image: docker
+    environment:
+      OCI_REGISTRY_USER:
+        from_secret: OCI_REGISTRY_USER
+      OCI_REGISTRY_PASSWORD:
+        from_secret: OCI_REGISTRY_PASSWORD
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - echo "$OCI_REGISTRY_PASSWORD" | docker login registry.oci.w3studio.it -u "$OCI_REGISTRY_USER" --password-stdin
+      - docker service update --image registry.oci.w3studio.it/mammamia:${CI_COMMIT_SHA} --with-registry-auth stremio_mammamia
+      - docker service update --image registry.oci.w3studio.it/media_flow_proxy:${CI_COMMIT_SHA} --with-registry-auth stremio_mediaflow_proxy
+      - docker service update --image registry.oci.w3studio.it/streamv:${CI_COMMIT_SHA} --with-registry-auth stremio_streamv
+      - docker service update --image registry.oci.w3studio.it/webstreamr:${CI_COMMIT_SHA} --with-registry-auth stremio_webstreamr
       
       
 
