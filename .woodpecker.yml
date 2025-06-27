@@ -16,7 +16,13 @@ steps:
         from_secret: OCI_REGISTRY_USER
       password:
         from_secret: OCI_REGISTRY_PASSWORD
-  
+  pull-image:
+    image: docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - sleep 10
+      - docker pull registry.oci.w3studio.it/streamv:${CI_COMMIT_SHA}
   update-stack:
     image: docker
     volumes:
