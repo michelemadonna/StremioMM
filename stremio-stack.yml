@@ -5,7 +5,7 @@ services:
     image: registry.oci.w3studio.it/media_flow_proxy:latest
     environment:
       - API_PASSWORD=${API_PASSWORD}
-      - 'TRANSPORT_ROUTES={"all://*.newkso.ru": {"proxy": true, "verify_ssl": false}, "all://newkso.ru": {"proxy": true, "verify_ssl": false}, "all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}, all://*.vavoo.to": {"proxy": true, "verify_ssl": false}, "all://vavoo.to": {"proxy": true, "verify_ssl": false}}'
+      - 'TRANSPORT_ROUTES={"all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}}'
     deploy:
       replicas: 1
       labels:
