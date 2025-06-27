@@ -6,7 +6,7 @@ services:
     container_name: mediaflow_proxy
     environment:
       - API_PASSWORD=${API_PASSWORD}
-      - 'TRANSPORT_ROUTES=TRANSPORT_ROUTES={"all://*.newkso.ru": {"proxy": true, "verify_ssl": false}, "all://newkso.ru": {"proxy": true, "verify_ssl": false}, "all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}, all://*.vavoo.to": {"proxy": true, "verify_ssl": false}, "all://vavoo.to": {"proxy": true, "verify_ssl": false}}'
+      - 'TRANSPORT_ROUTES={"all://*.newkso.ru": {"proxy": true, "verify_ssl": false}, "all://newkso.ru": {"proxy": true, "verify_ssl": false}, "all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}, all://*.vavoo.to": {"proxy": true, "verify_ssl": false}, "all://vavoo.to": {"proxy": true, "verify_ssl": false}}'
     restart: unless-stopped
   mammamia:
     build: ./mammamia
