@@ -22,4 +22,4 @@ steps:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker service update --image registry.oci.w3studio.it/streamv:${CI_COMMIT_SHA}  --with-registry-auth stremio_streamv
+      - docker service update --image registry.oci.w3studio.it/streamv:${CI_COMMIT_SHA} --with-registry-auth stremio_streamv
