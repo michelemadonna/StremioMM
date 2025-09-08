@@ -6,6 +6,7 @@ services:
     environment:
       - API_PASSWORD=${API_PASSWORD}
       - 'TRANSPORT_ROUTES={"all://*.ichigotv.net": {"verify_ssl": false}, "all://ichigotv.net": {"verify_ssl": false}}'
+      - FORWARDED_ALLOW_IPS=${FORWARDED_ALLOW_IPS}
     deploy:
       replicas: 1
       labels:
@@ -39,6 +40,8 @@ services:
       - MFP_URL=${MFP_URL}
       - MFP_PSW=${MFP_PSW}
       - BOTHLINK=${BOTHLINK}
+      - ANIMEUNITY_ENABLED=${ANIMEUNITY_ENABLED}
+      - ANIMESATURN_ENABLED=${ANIMESATURN_ENABLED}
     command: pnpm start
     networks:
       - traefik-net

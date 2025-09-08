@@ -19,7 +19,7 @@ steps:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
     settings:
       dockerfile: Dockerfile
-      context: https://github.com/mhdzumair/mediaflow-proxy.git
+      context: https://github.com/nzo66/mediaflow-proxy.git#main
       repo: registry.oci.w3studio.it/media_flow_proxy
       tags: latest, ${CI_COMMIT_SHA}
       push: true
@@ -31,7 +31,7 @@ steps:
   build-streamv:
     image: woodpeckerci/plugin-docker-buildx:6.0.1
     settings:
-      context: "https://github.com/qwertyuiop8899/StreamV.git#main"
+      context: "https://github.com/qwertyuiop8899/streamvix.git#main"
       dockerfile: Dockerfile
       repo: registry.oci.w3studio.it/streamv
       tags: latest, ${CI_COMMIT_SHA}
