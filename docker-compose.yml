@@ -28,7 +28,8 @@ services:
   #    - CASTING_DISABLED=1
   #  restart: unless-stopped
   streamv:
-    build: https://github.com/qwertyuiop8899/streamvix.git#main
+    #build: https://github.com/qwertyuiop8899/streamvix.git#main
+    image: krystall0/streamvix:latest
     container_name: streamv
     environment:
       - TMDB_API_KEY=${TMDB_API_KEY}
